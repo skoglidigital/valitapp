@@ -1,2 +1,14 @@
-# valitapp
+# Valitapp
 A streamlit app to validate IFC models against IDS. 
+
+# Prototype to test out validation of IFC files using IDS
+
+The app is heavily based on the IfcTester project and Ifcopenshell and serves as a prototype in a project initiated by the Norwegian Building Authority. 
+
+The IDS is a demo for two specifications relevant for cleaning use case for BIM. 
+
+![](renholdsids.png)
+
+And tested on a model provided by a Norwegian Property Owner. 
+
+![](valitapp.png)
