@@ -1,6 +1,5 @@
 streamlit
 ifcopenshell
-matplotlib
-plotly
+xmlschema
 pandas
 xlsxwriter

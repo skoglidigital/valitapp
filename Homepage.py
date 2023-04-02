@@ -79,7 +79,7 @@ def main():
         
 
 
-    st.sidebar.write("""
+    st.sidebar.info("""
     --------------
     ### Developed by
 
@@ -90,6 +90,8 @@ def main():
     #### Based on Ifcopenshell, IfcTester and Ifc101 course
     
     --------------
+    Find the code [on Github](https://github.com/mok-see)
+
     License: [GPL-3.0 license](https://github.com/mok-see/valitapp/blob/main/LICENSE)
     
     """)

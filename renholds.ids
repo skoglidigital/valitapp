@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ids xmlns="http://standards.buildingsmart.org/IDS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS/ids_05.xsd">
+    <info>
+        <title>IDS Renhold</title>
+        <copyright>[mok-see] AS</copyright>
+        <version>0.01</version>
+        <author>sigve@mok-see.com</author>
+    </info>
+    <specifications>
+        <specification name="Spesifikasjon: Navngivning" ifcVersion="IFC2X3 IFC4" minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcSpace</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <attribute minOccurs="1" instructions="Rooms need to have a Name attribute" maxOccurs="1">
+                    <name>
+                        <simpleValue>Name</simpleValue>
+                    </name>
+                </attribute>
+                <attribute minOccurs="1" instructions="Rooms need to have a LongName attribute" maxOccurs="1">
+                    <name>
+                        <simpleValue>LongName</simpleValue>
+                    </name>
+                </attribute>
+            </requirements>
+        </specification>
+        <specification name="Spesifikasjon: Nettoareal" ifcVersion="IFC2X3 IFC4" minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcSpace</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcAreaMeasure" minOccurs="1" instructions="Rooms need to have NetPlannedArea." maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Pset_SpaceCommon</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>NetPlannedArea</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+    </specifications>
+</ids>
