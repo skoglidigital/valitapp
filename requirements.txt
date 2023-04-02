@@ -3,3 +3,4 @@ ifcopenshell
 xmlschema
 pandas
 xlsxwriter
+python=3.9
