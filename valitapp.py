@@ -43,7 +43,7 @@ def main():
     ###  📁 Click on Browse File in the Side Bar to start
     
     
-    Some Project information can ble placed here.... 
+    Start by uploading your IFC, then upload your IDS file to check against. 
     
     """
     )

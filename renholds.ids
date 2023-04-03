@@ -3,11 +3,14 @@
     <info>
         <title>IDS Renhold</title>
         <copyright>[mok-see] AS</copyright>
-        <version>0.01</version>
+        <version>0.5</version>
+        <description>Arkitektmodell kan bli brukt til å kalkulere renholdskostnader hvis den inneholder                 informasjonen som er definert i denne Informasjons-leveranse-spesifikasjonen (IDS-Informaton Delivery Specification)                Denne IDS filen kan brukes for å automatisk validere at en IFC-modell.                 Prosjektet er en del av pilotprosjekt i regi av DiBK</description>
         <author>sigve@mok-see.com</author>
+        <purpose>Basis for kalkulere renholdskostnader</purpose>
+        <milestone>MMI 500 : Som bygget</milestone>
     </info>
     <specifications>
-        <specification name="Spesifikasjon: Navngivning" ifcVersion="IFC2X3 IFC4" minOccurs="0" maxOccurs="unbounded">
+        <specification name="Navngivning på rom" ifcVersion="IFC2X3 IFC4" description="Alle rom må ha et beskrivende navn og romnummer som kan gjennkjennes på merking i bygget" instructions="Alle rom må kunne identifiseres med romnavn og romnummer" minOccurs="0" maxOccurs="unbounded">
             <applicability>
                 <entity>
                     <name>
@@ -16,19 +19,19 @@
                 </entity>
             </applicability>
             <requirements>
-                <attribute minOccurs="1" instructions="Rooms need to have a Name attribute" maxOccurs="1">
-                    <name>
-                        <simpleValue>Name</simpleValue>
-                    </name>
-                </attribute>
-                <attribute minOccurs="1" instructions="Rooms need to have a LongName attribute" maxOccurs="1">
+                <attribute minOccurs="1" instructions="Alle rom må ha et romnavn" maxOccurs="1">
                     <name>
                         <simpleValue>LongName</simpleValue>
                     </name>
                 </attribute>
+                <attribute minOccurs="1" instructions="Alle rom må ha et romnummer" maxOccurs="1">
+                    <name>
+                        <simpleValue>Name</simpleValue>
+                    </name>
+                </attribute>
             </requirements>
         </specification>
-        <specification name="Spesifikasjon: Nettoareal" ifcVersion="IFC2X3 IFC4" minOccurs="0" maxOccurs="unbounded">
+        <specification name="Dekkende materialer på rom" ifcVersion="IFC2X3 IFC4" description="Alle rom må referanse til dekkene som kler rommet" instructions="Alle rom må referanse til dekkene som kler rommet, som gir referanse til IfcCovering" minOccurs="0" maxOccurs="unbounded">
             <applicability>
                 <entity>
                     <name>
@@ -37,14 +40,76 @@
                 </entity>
             </applicability>
             <requirements>
-                <property measure="IfcAreaMeasure" minOccurs="1" instructions="Rooms need to have NetPlannedArea." maxOccurs="1">
+                <attribute minOccurs="1" instructions="Alle rom må gi liste av relaterte dekkende flater" maxOccurs="1">
+                    <name>
+                        <simpleValue>HasCoverings</simpleValue>
+                    </name>
+                </attribute>
+            </requirements>
+        </specification>
+        <specification name="Størrelser på rom" ifcVersion="IFC4" description="Romstørrelser må oppgis for å kunne kalkulere renholdskostnader" instructions="Alle rom må oppgi nødvendige størrelser for å kunne kalkulere riktige renholdskostnader per rom" minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcSpace</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcAreaMeasure" minOccurs="1" instructions="Netto gulvareal må være oppgitt per rom" maxOccurs="1">
                     <propertySet>
-                        <simpleValue>Pset_SpaceCommon</simpleValue>
+                        <simpleValue>Qto_SpaceBaseQuantities</simpleValue>
                     </propertySet>
                     <name>
-                        <simpleValue>NetPlannedArea</simpleValue>
+                        <simpleValue>NetFloorArea</simpleValue>
                     </name>
                 </property>
+                <property measure="IfcLengthMeasure" minOccurs="1" instructions="Himlingshøyde, netto høyde på rommet, må være oppgitt for hver rom" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Qto_SpaceBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>FinishCeilingHeight</simpleValue>
+                    </name>
+                </property>
+                <property measure="IfcLengthMeasure" minOccurs="1" instructions="Det må være oppgitt om det er åpen eller lukket himling på rommet" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Qto_SpaceBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>ConcealedCeiling</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Veggareal for vegger under 3 meter" ifcVersion="IFC4" description="Alle vegger opp til og med 3 meter skal vaskes iht. INSTA800" instructions="Alle vegger opp til og med 3 meter må ha oppgitt nettoareal for å kunne kalkulere renholdskostnader" minOccurs="1" maxOccurs="unbounded">
+            <applicability>
+                <property>
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Height</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>&lt;=3</simpleValue>
+                    </value>
+                </property>
+            </applicability>
+            <requirements>
+                <property measure="IfcAreaMeasure" minOccurs="1" instructions="Alle vegger på 3 m eller mindre må ha oppgitt netto areal" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Qto_SpaceBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>NetWallArea</simpleValue>
+                    </name>
+                </property>
+                <attribute minOccurs="1" instructions="Alle vegger under 3 meter skal ha referanse til materialene som dekker veggen" maxOccurs="1">
+                    <name>
+                        <simpleValue>HasCovering</simpleValue>
+                    </name>
+                </attribute>
             </requirements>
         </specification>
     </specifications>
