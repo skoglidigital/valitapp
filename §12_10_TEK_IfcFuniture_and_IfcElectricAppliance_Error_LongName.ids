@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ids xmlns="http://standards.buildingsmart.org/IDS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS/ids_09.xsd">
+    <info>
+        <title>TEK og BIM</title>
+        <copyright>[mok-see] AS</copyright>
+        <version>0.01</version>
+        <description>Som en del av digitalisering av TEK er denne IDS (Information Delivery Specification) filen laget med bakgrunn i å kunne validere at BIM modeller tilfredstiller §12-10 Bod og oppbevaringsplass</description>
+        <author>sigve@mok-see.com</author>
+        <purpose>Denne IDS filen er laget som en demonstrator for TEK og BIM for validering av §12-10 Bod og oppbevaringsplass</purpose>
+        <milestone>MMI 500: As-Built</milestone>
+    </info>
+    <specifications>
+        <specification name="§12-10 (1) Plass til oppbevaring av klær" ifcVersion="IFC4" description="Boenheten skal ha tilstrekkelig og egnet plass for oppbevaring av klær" instructions="Produksjonsunderlag (BIM) må vise avsatt plass til oppbevaring av klær ved IfcSpatialZone eller IfcFurniture objekt." minOccurs="1" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcFurniture</simpleValue>
+                    </name>
+                </entity>
+                <attribute>
+                    <name>
+                        <simpleValue>ObjectType</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>STORAGE_OF_CLOTHES</simpleValue>
+                    </value>
+                </attribute>
+            </applicability>
+            <requirements>
+                <attribute instructions="Name må være angitt" minOccurs="1" maxOccurs="1">
+                    <name>
+                        <simpleValue>Name</simpleValue>
+                    </name>
+                </attribute>
+                <attribute instructions="LongName må være angitt" minOccurs="1" maxOccurs="1">
+                    <name>
+                        <simpleValue>LongName</simpleValue>
+                    </name>
+                </attribute>
+            </requirements>
+        </specification>
+        <specification name="§12-10 (2) (1) Plass til oppbevaring av mat (Tørrmat)" ifcVersion="IFC4" description="Boenheten skal ha tilstrekkelig og egnet plass for oppbevaring av tørrmat" instructions="Produksjonsunderlag (BIM) må vise avsatt plass til oppbevaring av tørrmat med riktig objekttype." minOccurs="1" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcFurniture</simpleValue>
+                    </name>
+                </entity>
+                <attribute>
+                    <name>
+                        <simpleValue>ObjectType</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>STORAGE_DRY_FOOD</simpleValue>
+                    </value>
+                </attribute>
+            </applicability>
+            <requirements>
+                <attribute instructions="Name må være angitt" minOccurs="1" maxOccurs="1">
+                    <name>
+                        <simpleValue>Name</simpleValue>
+                    </name>
+                </attribute>
+                <attribute instructions="LongName må være angitt" minOccurs="1" maxOccurs="1">
+                    <name>
+                        <simpleValue>LongName</simpleValue>
+                    </name>
+                </attribute>
+            </requirements>
+        </specification>
+        <specification name="§12-10 (2) (2) Plass til oppbevaring av mat (Kjølevarer)" ifcVersion="IFC4" description="Boenheten skal ha tilstrekkelig og egnet plass for oppbevaring av kjølevarer" instructions="Produksjonsunderlag (BIM) må vise avsatt plass til oppbevaring av kjølevarer med riktig object type." minOccurs="1" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcElectricAppliance</simpleValue>
+                    </name>
+                </entity>
+                <attribute>
+                    <name>
+                        <simpleValue>PredefinedType</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>FRIDGE_FREEZER</simpleValue>
+                    </value>
+                </attribute>
+            </applicability>
+            <requirements>
+                <attribute instructions="Name må være angitt" minOccurs="1" maxOccurs="1">
+                    <name>
+                        <simpleValue>Name</simpleValue>
+                    </name>
+                </attribute>
+                <attribute instructions="LongName må være angitt" minOccurs="1" maxOccurs="1">
+                    <name>
+                        <simpleValue>LongName</simpleValue>
+                    </name>
+                </attribute>
+            </requirements>
+        </specification>
+    </specifications>
+</ids>

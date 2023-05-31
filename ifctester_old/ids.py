@@ -81,7 +81,7 @@ class Ids:
             "@xmlns": "http://standards.buildingsmart.org/IDS",
             "@xmlns:xs": "http://www.w3.org/2001/XMLSchema",
             "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
-            "@xsi:schemaLocation": "http://standards.buildingsmart.org/IDS/ids_09.xsd",
+            "@xsi:schemaLocation": "http://standards.buildingsmart.org/IDS/ids_05.xsd",
             "info": self.info,
             "specifications": {"specification": []},
         }
@@ -171,8 +171,8 @@ class Specification:
         self.minOccurs = ids_dict["@minOccurs"]
         self.maxOccurs = ids_dict["@maxOccurs"]
         self.ifcVersion = ids_dict["@ifcVersion"]
-        self.applicability = self.parse_clause(ids_dict["applicability"]) if "applicability" in ids_dict else []
-        self.requirements = self.parse_clause(ids_dict["requirements"]) if "requirements" in ids_dict else []
+        self.applicability = self.parse_clause(ids_dict["applicability"])
+        self.requirements = self.parse_clause(ids_dict["requirements"])
         return self
 
     def parse_clause(self, clause):
@@ -201,14 +201,7 @@ class Specification:
             return
 
         elements = []
-        
-        for i, facet in enumerate(self.applicability):
-            # Usually, we rely on an entity applicability to give us our first
-            # shortlist of elements, as it's the most efficient way to filter
-            # elements. If this does not exist, then we have no choice but to
-            # check everything.
-            if i == 0 and not isinstance(facet, Entity):
-                elements = list(ifc_file)
+        for facet in self.applicability:
             elements = facet.filter(ifc_file, elements)
 
         for element in elements:
@@ -245,13 +238,11 @@ class Specification:
                     facet.status = False
             elif self.failed_entities:
                 self.status = False
-        elif self.minOccurs == 0 and self.maxOccurs != 0: 
+        elif self.minOccurs == 0 and self.maxOccurs != 0:
             if self.failed_entities:
                 self.status = False
         elif self.maxOccurs == 0:
-            if (len(self.applicable_entities)) > 0 and len(self.requirements) == 0:
-                self.status = False
-            if (len(self.applicable_entities)) > 0 and (len(self.applicable_entities) - len(self.failed_entities)) > 0:
+            if (len(self.applicable_entities) - len(self.failed_entities)) > 0:
                 self.status = False
 
     def get_usage(self):
