@@ -7,12 +7,14 @@ from ifctester import reporter
 import streamlit.components.v1 as components
 
 def callback_model_upload():
-    session["model_file_name"] = session["uploaded_model"].name
+    print("callback_ifc_run")
+    
     session["array_buffer"] = session["uploaded_model"].getvalue()
     session["ifc_file"] = ifcopenshell.file.from_string(session["array_buffer"].decode("utf-8"))
     session["is_ifc_loaded"] = True
 
 def callback_ids_upload():
+    print("callback_ids_run")
     session["ids_file"] = ids.open(session["uploaded_ids"])
     session["is_ids_loaded"] = True
     session["validated"] = False
@@ -35,7 +37,7 @@ def main():
     st.set_page_config(
         layout= "wide",
         page_title="Valitapp- IFC validator",
-        page_icon="✔️",
+        page_icon="✔️"
     )
     st.title("Valitapp - validate IFC models against your IDS")
     st.markdown(
@@ -57,7 +59,8 @@ def main():
     st.sidebar.file_uploader("Choose a Information Delivery Specification (IDS)", type=['.xml',".ids"], key="uploaded_ids", on_change=callback_ids_upload)
 
     ## Add File Name and Success Message
-    if "is_ifc_loaded" in session and session["is_ifc_loaded"]:
+    if  "is_ifc_loaded" in session and session["is_ifc_loaded"] and \
+        "is_ids_loaded" in session and session["is_ids_loaded"]:
         st.sidebar.success(f'Project successfuly loaded')
         st.sidebar.write("🔃 You can reload a new file  ")
         
