@@ -7,17 +7,16 @@ from ifctester import reporter
 import streamlit.components.v1 as components
 
 def callback_model_upload():
-    print("callback_ifc_run")
-    
-    session["array_buffer"] = session["uploaded_model"].getvalue()
-    session["ifc_file"] = ifcopenshell.file.from_string(session["array_buffer"].decode("utf-8"))
-    session["is_ifc_loaded"] = True
+    if "uploaded_model" in session and session["uploaded_model"]:
+        session["array_buffer"] = session["uploaded_model"].getvalue()
+        session["ifc_file"] = ifcopenshell.file.from_string(session["array_buffer"].decode("utf-8"))
+        session["is_ifc_loaded"] = True
 
 def callback_ids_upload():
-    print("callback_ids_run")
-    session["ids_file"] = ids.open(session["uploaded_ids"])
-    session["is_ids_loaded"] = True
-    session["validated"] = False
+    if "uploaded_ids" in session and session["uploaded_ids"]:
+        session["ids_file"] = ids.open(session["uploaded_ids"])
+        session["is_ids_loaded"] = True
+        session["validated"] = False
 
 def get_project_name():
     return session.ifc_file.by_type("IfcProject")[0].Name
@@ -63,6 +62,8 @@ def main():
         "is_ids_loaded" in session and session["is_ids_loaded"]:
         st.sidebar.success(f'Project successfuly loaded')
         st.sidebar.write("🔃 You can reload a new file  ")
+
+
         
         if ("is_ids_loaded" in session and session["is_ids_loaded"]):
             ## Validate Model with uploaded IDS
