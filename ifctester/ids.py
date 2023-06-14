@@ -207,10 +207,14 @@ class Specification:
             # shortlist of elements, as it's the most efficient way to filter
             # elements. If this does not exist, then we have no choice but to
             # check everything.
+            print(i,facet)
+            #print(isinstance(facet, Entity))
             if i == 0 and not isinstance(facet, Entity):
+                print("Entered first IF")
                 elements = list(ifc_file)
+            
             elements = facet.filter(ifc_file, elements)
-
+        print(elements)    
         for element in elements:
             is_applicable = True
             for facet in self.applicability:
@@ -219,6 +223,7 @@ class Specification:
                 if not bool(facet(element)):
                     is_applicable = False
                     break
+            print(is_applicable)
             if not is_applicable:
                 continue
             self.applicable_entities.append(element)
