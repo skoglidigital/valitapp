@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<ids xmlns="http://standards.buildingsmart.org/IDS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS/ids_09.xsd">
+<ids xmlns="http://standards.buildingsmart.org/IDS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS/ids_09.xsd">
     <info>
         <title>IDS Renhold</title>
         <copyright>[mok-see] AS</copyright>
         <version>0.5</version>
-        <description>Arkitektmodell kan bli brukt til å kalkulere renholdskostnader hvis den inneholder                 informasjonen som er definert i denne Informasjons-leveranse-spesifikasjonen (IDS-Informaton Delivery Specification)                Denne IDS filen kan brukes for å automatisk validere at en IFC-modell.                 Prosjektet er en del av pilotprosjekt i regi av DiBK</description>
+        <description>Arkitektmodell kan bli brukt til å kalkulere renholdskostnader hvis den inneholder       informasjonen som er definert i denne Informasjons-leveranse-spesifikasjonen (IDS-Informaton Delivery Specification)         Denne IDS filen kan brukes for å automatisk validere at en IFC-modell.             Prosjektet er en del av pilotprosjekt i regi av DiBK</description>
         <author>sigve@mok-see.com</author>
         <purpose>Basis for kalkulere renholdskostnader</purpose>
         <milestone>MMI 500 : Som bygget</milestone>
@@ -31,7 +31,7 @@
                 </attribute>
             </requirements>
         </specification>
-        <specification name="Dekkende materialer på rom" ifcVersion="IFC2X3 IFC4" description="Alle rom må referanse til dekkene som kler rommet" instructions="Alle rom må referanse til dekkene som kler rommet, som gir referanse til IfcCovering" minOccurs="0" maxOccurs="unbounded">
+        <specification name="Dekkende materialer på rom" ifcVersion="IFC2X3 IFC4" description="Alle rom må ha referanse til dekkene som kler rommet" instructions="Alle rom må referanse til dekkene som kler rommet, som gir referanse til IfcCovering" minOccurs="0" maxOccurs="unbounded">
             <applicability>
                 <entity>
                     <name>
@@ -72,9 +72,9 @@
                         <simpleValue>FinishCeilingHeight</simpleValue>
                     </name>
                 </property>
-                <property measure="IfcLengthMeasure" minOccurs="1" instructions="Det må være oppgitt om det er åpen eller lukket himling på rommet" maxOccurs="1">
+                <property measure="IfcBoolean" minOccurs="1" instructions="Det må være oppgitt om det er åpen eller lukket himling på rommet" maxOccurs="1">
                     <propertySet>
-                        <simpleValue>Qto_SpaceBaseQuantities</simpleValue>
+                        <simpleValue>Pset_SpaceCoveringRequirements</simpleValue>
                     </propertySet>
                     <name>
                         <simpleValue>ConcealedCeiling</simpleValue>
@@ -82,9 +82,49 @@
                 </property>
             </requirements>
         </specification>
+        <specification name="Overflater i rommet" ifcVersion="IFC4" description="Overflater må oppgis for å kunne kalkulere renholdskostnader" instructions="Alle rom må oppgi nødvendige overflatematerialer for å kunne kalkulere riktige renholdskostnader per rom" minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcSpace</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcLabel" minOccurs="1" instructions="Overflater på vegger må være angitt" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Pset_SpaceCoveringRequirements</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>WallCovering</simpleValue>
+                    </name>
+                </property>
+                <property measure="IfcLabel" minOccurs="1" instructions="Overflater på gulv må være angitt" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Pset_SpaceCoveringRequirements</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>FloorCovering</simpleValue>
+                    </name>
+                </property>
+                <property measure="IfcLabel" minOccurs="1" instructions="Overflater på vegger må være angitt" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Pset_SpaceCoveringRequirements</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>CeilingCovering</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
         <specification name="Veggareal for vegger under 3 meter" ifcVersion="IFC4" description="Alle vegger opp til og med 3 meter skal vaskes iht. INSTA800" instructions="Alle vegger opp til og med 3 meter må ha oppgitt nettoareal for å kunne kalkulere renholdskostnader" minOccurs="1" maxOccurs="unbounded">
             <applicability>
-                <property>
+                <entity>
+                    <name>
+                        <simpleValue>IfcWall</simpleValue>
+                    </name>
+                </entity>
+                <property measure="IfcLengthMeasure">
                     <propertySet>
                         <simpleValue>Qto_WallBaseQuantities</simpleValue>
                     </propertySet>
@@ -92,24 +132,55 @@
                         <simpleValue>Height</simpleValue>
                     </name>
                     <value>
-                        <simpleValue>&lt;=3</simpleValue>
+                        <xs:restriction base="xs:string">
+                            <xs:maxInclusive value="3" fixed="false" />
+                        </xs:restriction>
                     </value>
                 </property>
             </applicability>
             <requirements>
                 <property measure="IfcAreaMeasure" minOccurs="1" instructions="Alle vegger på 3 m eller mindre må ha oppgitt netto areal" maxOccurs="1">
                     <propertySet>
-                        <simpleValue>Qto_SpaceBaseQuantities</simpleValue>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
                     </propertySet>
                     <name>
-                        <simpleValue>NetWallArea</simpleValue>
+                        <simpleValue>NetSideArea</simpleValue>
                     </name>
                 </property>
-                <attribute minOccurs="1" instructions="Alle vegger under 3 meter skal ha referanse til materialene som dekker veggen" maxOccurs="1">
+                <material minOccurs="1" instructions="Walls must have materials" maxOccurs="1" />
+            </requirements>
+        </specification>
+        <specification name="Veggareal for vegger under 3 meter" ifcVersion="IFC4" description="Alle vegger opp til og med 3 meter skal vaskes iht. INSTA800" instructions="Alle vegger opp til og med 3 meter må ha oppgitt nettoareal for å kunne kalkulere renholdskostnader" minOccurs="1" maxOccurs="unbounded">
+            <applicability>
+                <entity>
                     <name>
-                        <simpleValue>HasCovering</simpleValue>
+                        <simpleValue>IfcWall</simpleValue>
                     </name>
-                </attribute>
+                </entity>
+                <property measure="IfcLengthMeasure">
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Height</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:maxInclusive value="3" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </applicability>
+            <requirements>
+                <property measure="IfcAreaMeasure" minOccurs="1" instructions="Alle vegger på 3 m eller mindre må ha oppgitt netto areal" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>NetSideArea</simpleValue>
+                    </name>
+                </property>
+                <material minOccurs="1" instructions="Walls must have materials" maxOccurs="1" />
             </requirements>
         </specification>
     </specifications>

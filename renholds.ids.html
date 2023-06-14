@@ -1,0 +1,180 @@
+<!--
+    IfcTester - IDS based model auditing
+    Copyright (C) 2022 Dion Moult <dion@thinkmoult.com>
+
+    This file is part of IfcTester.
+
+    IfcTester is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    IfcTester is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with IfcTester.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<!DOCTYPE html>
+<html lang=>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="foobaro">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Inconsolata|Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Arial', sans-serif; padding: 10px 40px; }
+        span.time { color: #999; font-style: italic; float: right; }
+        span.step-time { float: right; color: #555; font-size: 0.8em; font-style: italic; }
+        span.success { background-color: #97cc64; padding: 5px; border-radius: 5px; color: #FFF; font-weight: bold; }
+        span.failure { background-color: #fb5a3e; padding: 5px; border-radius: 5px; color: #FFF; font-weight: bold; }
+        p.failure { background-color: #fb5a3e; padding: 5px; border-radius: 5px; color: #fff; }
+        p.unspecified { background-color: #994f00; padding: 5px; border-radius: 5px; color: #fff; }
+        p.skipped { background-color: #8b8d8f; padding: 5px; border-radius: 5px; color: #fff; }
+        p.description { background-color: #eee; border-radius: 5px; padding: 20px; margin-left: auto; margin-right: auto; display: inline-block; font-weight: bold;}
+        li { padding: 10px; font-family: monospace; }
+        li.success { background-color: #b6cca1; color: #333; }
+        li.failure { background-color: #fbb4a8; color: #900; }
+        li.unspecified { background-color: #ffd37f; color: #a30; }
+        li.skipped { background-color: #f5f5f5; color: #333; }
+        li p { margin-bottom: 0px; }
+        footer { color: #999; font-size: 0.8em; }
+        header { text-align: center; }
+        hr { margin: 20px; margin-left: 0px; margin-right: 0px;  border: none; border-top: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>IDS Renhold</h1>
+        <p><strong>2023-06-13 17:23:20</strong></p>
+    </header>
+    <section>
+        <h2>Navngivning på rom</h2>
+        <p>
+            <span class="failure">Fail</span>
+            Passed: <strong>0 / 3</strong> (0%)
+        </p>
+        <ol>
+            <li class="failure">
+                The LongName shall be provided
+                
+                <p class="failure">
+                    The attribute value &quot;None&quot; is empty <em style="color: #fbb4a8;">#2229=IfcSpace(&#x27;1vta0gorzCqfabdWDCsqgn&#x27;,$,&#x27;Bad&#x27;,$,$,#4616,#2247,$,$,.INTERNAL.,$)</em><br />
+                    The attribute value &quot;None&quot; is empty <em style="color: #fbb4a8;">#2254=IfcSpace(&#x27;2IuY41v1j9uvNrcDCYGkbE&#x27;,$,&#x27;Kontor&#x27;,$,$,#4651,#2272,$,$,.INTERNAL.,$)</em><br />
+                    The attribute value &quot;None&quot; is empty <em style="color: #fbb4a8;">#2278=IfcSpace(&#x27;1GbJUaN4H4yRR7TtsLHSYM&#x27;,$,&#x27;Stue&#x27;,$,$,#4676,#2306,$,$,.INTERNAL.,$)</em><br />
+                </p>
+                
+            </li>
+            <li class="success">
+                The Name shall be provided
+                
+            </li>
+        </ol>
+    </section>
+    <section>
+        <h2>Dekkende materialer på rom</h2>
+        <p>
+            <span class="failure">Fail</span>
+            Passed: <strong>0 / 3</strong> (0%)
+        </p>
+        <ol>
+            <li class="failure">
+                The HasCoverings shall be provided
+                
+                <p class="failure">
+                    The attribute value &quot;()&quot; is empty <em style="color: #fbb4a8;">#2229=IfcSpace(&#x27;1vta0gorzCqfabdWDCsqgn&#x27;,$,&#x27;Bad&#x27;,$,$,#4616,#2247,$,$,.INTERNAL.,$)</em><br />
+                    The attribute value &quot;()&quot; is empty <em style="color: #fbb4a8;">#2254=IfcSpace(&#x27;2IuY41v1j9uvNrcDCYGkbE&#x27;,$,&#x27;Kontor&#x27;,$,$,#4651,#2272,$,$,.INTERNAL.,$)</em><br />
+                    The attribute value &quot;()&quot; is empty <em style="color: #fbb4a8;">#2278=IfcSpace(&#x27;1GbJUaN4H4yRR7TtsLHSYM&#x27;,$,&#x27;Stue&#x27;,$,$,#4676,#2306,$,$,.INTERNAL.,$)</em><br />
+                </p>
+                
+            </li>
+        </ol>
+    </section>
+    <section>
+        <h2>Størrelser på rom</h2>
+        <p>
+            <span class="success">Pass</span>
+            Passed: <strong>3 / 3</strong> (100%)
+        </p>
+        <ol>
+            <li class="success">
+                NetFloorArea data shall be provided in the dataset Qto_SpaceBaseQuantities
+                
+            </li>
+            <li class="success">
+                FinishCeilingHeight data shall be provided in the dataset Qto_SpaceBaseQuantities
+                
+            </li>
+            <li class="success">
+                ConcealedCeiling data shall be provided in the dataset Pset_SpaceCoveringRequirements
+                
+            </li>
+        </ol>
+    </section>
+    <section>
+        <h2>Overflater i rommet</h2>
+        <p>
+            <span class="failure">Fail</span>
+            Passed: <strong>0 / 3</strong> (0%)
+        </p>
+        <ol>
+            <li class="failure">
+                WallCovering data shall be provided in the dataset Pset_SpaceCoveringRequirements
+                
+                <p class="failure">
+                    The property set does not contain the required property <em style="color: #fbb4a8;">#2229=IfcSpace(&#x27;1vta0gorzCqfabdWDCsqgn&#x27;,$,&#x27;Bad&#x27;,$,$,#4616,#2247,$,$,.INTERNAL.,$)</em><br />
+                    The property set does not contain the required property <em style="color: #fbb4a8;">#2254=IfcSpace(&#x27;2IuY41v1j9uvNrcDCYGkbE&#x27;,$,&#x27;Kontor&#x27;,$,$,#4651,#2272,$,$,.INTERNAL.,$)</em><br />
+                    The property set does not contain the required property <em style="color: #fbb4a8;">#2278=IfcSpace(&#x27;1GbJUaN4H4yRR7TtsLHSYM&#x27;,$,&#x27;Stue&#x27;,$,$,#4676,#2306,$,$,.INTERNAL.,$)</em><br />
+                </p>
+                
+            </li>
+            <li class="failure">
+                FloorCovering data shall be provided in the dataset Pset_SpaceCoveringRequirements
+                
+                <p class="failure">
+                    The property set does not contain the required property <em style="color: #fbb4a8;">#2229=IfcSpace(&#x27;1vta0gorzCqfabdWDCsqgn&#x27;,$,&#x27;Bad&#x27;,$,$,#4616,#2247,$,$,.INTERNAL.,$)</em><br />
+                    The property set does not contain the required property <em style="color: #fbb4a8;">#2254=IfcSpace(&#x27;2IuY41v1j9uvNrcDCYGkbE&#x27;,$,&#x27;Kontor&#x27;,$,$,#4651,#2272,$,$,.INTERNAL.,$)</em><br />
+                    The property set does not contain the required property <em style="color: #fbb4a8;">#2278=IfcSpace(&#x27;1GbJUaN4H4yRR7TtsLHSYM&#x27;,$,&#x27;Stue&#x27;,$,$,#4676,#2306,$,$,.INTERNAL.,$)</em><br />
+                </p>
+                
+            </li>
+            <li class="failure">
+                CeilingCovering data shall be provided in the dataset Pset_SpaceCoveringRequirements
+                
+                <p class="failure">
+                    The property set does not contain the required property <em style="color: #fbb4a8;">#2229=IfcSpace(&#x27;1vta0gorzCqfabdWDCsqgn&#x27;,$,&#x27;Bad&#x27;,$,$,#4616,#2247,$,$,.INTERNAL.,$)</em><br />
+                    The property set does not contain the required property <em style="color: #fbb4a8;">#2254=IfcSpace(&#x27;2IuY41v1j9uvNrcDCYGkbE&#x27;,$,&#x27;Kontor&#x27;,$,$,#4651,#2272,$,$,.INTERNAL.,$)</em><br />
+                    The property set does not contain the required property <em style="color: #fbb4a8;">#2278=IfcSpace(&#x27;1GbJUaN4H4yRR7TtsLHSYM&#x27;,$,&#x27;Stue&#x27;,$,$,#4676,#2306,$,$,.INTERNAL.,$)</em><br />
+                </p>
+                
+            </li>
+        </ol>
+    </section>
+    <section>
+        <h2>Veggareal for vegger under 3 meter</h2>
+        <p>
+            <span class="failure">Fail</span>
+            Passed: <strong>0 / 0</strong> (N/A%)
+        </p>
+        <ol>
+            <li class="failure">
+                NetSideArea data shall be provided in the dataset Qto_WallBaseQuantities
+                
+            </li>
+            <li class="failure">
+                The HasCovering shall be provided
+                
+            </li>
+        </ol>
+    </section>
+    <hr>
+    <footer>
+        <p>
+            Report by <a href="https://blenderbim.org/">BlenderBIM</a> and <a href="http://ifcopenshell.org/">IfcOpenShell</a>.
+        </p>
+    </footer>
+</body>
+</html>

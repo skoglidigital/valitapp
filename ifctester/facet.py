@@ -37,7 +37,7 @@ def cast_to_value(from_value, to_value):
             elif from_value == "FALSE":
                 return False
         return builtins.__dict__[target_type](from_value)
-    except ValueError:
+    except ValueError as ve:
         pass
 
 
@@ -522,13 +522,13 @@ class Property(Facet):
                         pass
                     elif prop_entity.is_a("IfcPropertySingleValue"):
                         data_type = prop_entity.NominalValue.is_a()
-
                         if data_type != self.measure:
                             is_pass = False
                             reason = {"type": "MEASURE", "actual": data_type}
                             break
 
                         unit = ifcopenshell.util.unit.get_property_unit(prop_entity, inst.wrapped_data.file)
+                        
                         if unit and getattr(unit, "Name", None):
                             # TODO support unnamed derived units
                             props[pset_name][prop_entity.Name] = ifcopenshell.util.unit.convert(
@@ -646,10 +646,8 @@ class Property(Facet):
                 if not is_property_supported_class:
                     is_pass = False
                     reason = {"type": "NOVALUE"}
-
                 if not is_pass:
-                    break
-
+                    break   
                 if self.value:
                     for value in props[pset_name].values():
                         if isinstance(self.value, str) and isinstance(value, str):
@@ -675,6 +673,7 @@ class Property(Facet):
                         elif isinstance(self.value, str):
                             # "42" = 42
                             cast_value = cast_to_value(self.value, value)
+                            
                             if isinstance(value, float) and isinstance(cast_value, float):
                                 if value < cast_value * (1.0 - 1e-6) or value > cast_value * (1.0 + 1e-6):
                                     is_pass = False

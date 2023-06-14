@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ids xmlns="http://standards.buildingsmart.org/IDS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS/ids_09.xsd">
+    <info>
+        <title>IDS TEST</title>
+        <copyright>[mok-see] AS</copyright>
+        <version>0.5</version>
+        <description>TEST TEST TEST</description>
+        <author>sigve@mok-see.com</author>
+        <purpose>TEST</purpose>
+    </info>
+    <specifications>
+        <specification name="Veggareal for vegger under 3 meter" ifcVersion="IFC4" description="Alle vegger opp til og med 3 meter skal vaskes iht. INSTA800" instructions="Alle vegger opp til og med 3 meter må ha oppgitt nettoareal for å kunne kalkulere renholdskostnader" minOccurs="1" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcWall</simpleValue>
+                    </name>
+                </entity>
+                <property measure="IfcLengthMeasure">
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Height</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:maxInclusive value="3" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </applicability>
+            <requirements>
+                <property measure="IfcAreaMeasure" minOccurs="1" instructions="Alle vegger på 3 m eller mindre må ha oppgitt netto areal" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>NetSideArea</simpleValue>
+                    </name>
+                </property>
+                <attribute minOccurs="1" instructions="Alle vegger under 3 meter skal ha referanse til materialene som dekker veggen" maxOccurs="1">
+                    <name>
+                        <simpleValue>HasCovering</simpleValue>
+                    </name>
+                </attribute>
+            </requirements>
+        </specification>
+    </specifications>
+</ids>
