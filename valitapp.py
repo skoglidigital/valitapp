@@ -5,6 +5,14 @@ import streamlit as st
 from ifctester import ids
 from ifctester import reporter
 import streamlit.components.v1 as components
+import os
+
+def html_report(reporter):
+        import pystache
+        cwd = os.path.dirname(os.path.realpath(__file__))
+        print(cwd)
+        with open(os.path.join(cwd, "templates", "report.html"), "r") as file:
+            return pystache.render(file.read(), reporter.results)
 
 def callback_model_upload():
     if "uploaded_model" in session and session["uploaded_model"]:
@@ -74,13 +82,8 @@ def main():
         ### Add Space info for reference
         #st.write(get_space_info())
         if "validated" in session and session["validated"]:
-            components.html(session["engine"].to_string(),width=1600,height=1600,scrolling=True)
+            components.html(html_report(session["engine"]),width=1400,height=1400,scrolling=True)
    
-    
-    
-
-
-        
 
 
     st.sidebar.info("""

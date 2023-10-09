@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<ids xmlns="http://standards.buildingsmart.org/IDS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS/ids_09.xsd">
+<ids xmlns="http://standards.buildingsmart.org/IDS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS http://standards.buildingsmart.org/IDS/0.9.6/ids.xsd">
     <info>
         <title>TEK og BIM</title>
         <copyright>[mok-see] AS</copyright>
@@ -14,7 +14,7 @@
             <applicability>
                 <entity>
                     <name>
-                        <simpleValue>IfcFurniture</simpleValue>
+                        <simpleValue>IfcSpatialZone</simpleValue>
                     </name>
                 </entity>
                 <attribute>
@@ -27,12 +27,12 @@
                 </attribute>
             </applicability>
             <requirements>
-                <attribute instructions="Name må være angitt" minOccurs="1" maxOccurs="1">
+                <attribute instructions="Name må være angitt">
                     <name>
                         <simpleValue>Name</simpleValue>
                     </name>
                 </attribute>
-                <attribute instructions="LongName må være angitt" minOccurs="1" maxOccurs="1">
+                <attribute instructions="LongName må være angitt">
                     <name>
                         <simpleValue>LongName</simpleValue>
                     </name>
@@ -43,7 +43,7 @@
             <applicability>
                 <entity>
                     <name>
-                        <simpleValue>IfcFurniture</simpleValue>
+                        <simpleValue>IfcSpatialZone</simpleValue>
                     </name>
                 </entity>
                 <attribute>
@@ -56,12 +56,12 @@
                 </attribute>
             </applicability>
             <requirements>
-                <attribute instructions="Name må være angitt" minOccurs="1" maxOccurs="1">
+                <attribute instructions="Name må være angitt">
                     <name>
                         <simpleValue>Name</simpleValue>
                     </name>
                 </attribute>
-                <attribute instructions="LongName må være angitt" minOccurs="1" maxOccurs="1">
+                <attribute instructions="LongName må være angitt">
                     <name>
                         <simpleValue>LongName</simpleValue>
                     </name>
@@ -85,12 +85,12 @@
                 </attribute>
             </applicability>
             <requirements>
-                <attribute instructions="Name må være angitt" minOccurs="1" maxOccurs="1">
+                <attribute>
                     <name>
                         <simpleValue>Name</simpleValue>
                     </name>
                 </attribute>
-                <attribute instructions="LongName må være angitt" minOccurs="1" maxOccurs="1">
+                <attribute>
                     <name>
                         <simpleValue>LongName</simpleValue>
                     </name>

@@ -9,10 +9,8 @@ The app is heavily based on the IfcTester project and Ifcopenshell and serves as
 
 The IDS is a demo for two specifications relevant for cleaning use case for BIM. 
 
-![](renholdsids.png)
+![](img/renholdsids.png)
 
 And tested on a model provided by a Norwegian Property Owner. 
 
-![](valitapp.png)
-
-
+![](img/valitapp.png)
