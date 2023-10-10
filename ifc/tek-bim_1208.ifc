@@ -1,11 +1,11 @@
 ISO-10303-21;
 HEADER;
 FILE_DESCRIPTION(('ViewDefinition[DesignTransferView]'),'2;1');
-FILE_NAME('tek-bim_1208.ifc','2023-10-10T10:31:34+02:00',(),(),'IfcOpenShell v0.7.0-9cc1f5f0e','BlenderBIM 0.0.230902-46cfe70','Nobody');
+FILE_NAME('tek-bim_1208.ifc','2023-10-10T10:35:22+02:00',(),(),'IfcOpenShell v0.7.0-9cc1f5f0e','BlenderBIM 0.0.230902-46cfe70','Nobody');
 FILE_SCHEMA(('IFC4'));
 ENDSEC;
 DATA;
-#1=IFCPROJECT('3J_Ipg$nj9kO_OXuPXm9TD',$,'My Project',$,$,$,$,(#14,#25),#9);
+#1=IFCPROJECT('3J_Ipg$nj9kO_OXuPXm9TD',$,'DiBK TEK 17 \X2\00A7\X0\12.08 ','Modell laget for \X2\00E5\X0\ teste TEK \X2\00A7\X0\12.08 IDS',$,$,$,(#14,#25),#9);
 #2=IFCSIUNIT(*,.LENGTHUNIT.,.MILLI.,.METRE.);
 #3=IFCSIUNIT(*,.AREAUNIT.,$,.SQUARE_METRE.);
 #4=IFCSIUNIT(*,.VOLUMEUNIT.,$,.CUBIC_METRE.);
