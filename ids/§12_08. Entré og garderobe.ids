@@ -313,5 +313,272 @@
                 </property>
             </requirements>
         </specification>
+        <specification name="Inngangsplan" ifcVersion="IFC4" description="Inngangsplan må være definert og romme alle hovedfunksjoner, samt være der bygningsens hovedinngang er plassert" instructions="Det skal eksistere minimum ett objekt til å definere Inngangsplanet i modellen iht TEK17" minOccurs="1" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcSpatialZone</simpleValue>
+                    </name>
+                </entity>
+                <attribute>
+                    <name>
+                        <simpleValue>LongName</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Inngangsplan" />
+                            <xs:enumeration value="Entré" />
+                            <xs:enumeration value="Inngang" />
+                            <xs:enumeration value="511 Adkomstrom" />
+                        </xs:restriction>
+                    </value>
+                </attribute>
+            </applicability>
+            <requirements>
+                <attribute instructions="Inngangsplanet må ha en definert plassering, slik at man kan stadfeste høyde til andre plan og objekter i modell">
+                    <name>
+                        <simpleValue>ObjectPlacement</simpleValue>
+                    </name>
+                </attribute>
+                <attribute instructions="Inngangsplanet må ha definert typebetegnelse iht. TEK 17">
+                    <name>
+                        <simpleValue>PredefinedType</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>.USERDEFINED</simpleValue>
+                    </value>
+                </attribute>
+                <attribute instructions="Inngangsplanet må ha definert typebetegnelse iht. TEK 17">
+                    <name>
+                        <simpleValue>ObjectType</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Inngangsplan" />
+                            <xs:enumeration value="Entré" />
+                            <xs:enumeration value="Inngang" />
+                            <xs:enumeration value="511 Adkomstrom" />
+                        </xs:restriction>
+                    </value>
+                </attribute>
+            </requirements>
+        </specification>
+        <specification name="Inngangsplan - dører" ifcVersion="IFC4" description="Inngangsplanet for Tilgjengelig boenhet skal ha dører med terskelfrihet og trinnfrihet" instructions="Det eksisterer dørobjekter som har oppgitt slagareal, slagretning og deklarering av tilgjengelighet for funksjonshemmede" minOccurs="1" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcDoor</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <partOf relation="IFCRELCONTAINEDINSPATIALSTRUCTURE" minOccurs="1" maxOccurs="1">
+                    <entity>
+                        <name>
+                            <simpleValue>IfcSpatialZone</simpleValue>
+                        </name>
+                    </entity>
+                </partOf>
+                <attribute instructions="Dørobjektet må ha en definert plassering">
+                    <name>
+                        <simpleValue>ObjectPlacement</simpleValue>
+                    </name>
+                </attribute>
+                <attribute instructions="Dørobjektet må ha en definert og representativ geometri">
+                    <name>
+                        <simpleValue>Representation</simpleValue>
+                    </name>
+                </attribute>
+                <attribute instructions="Dørbredden må være definert og minimum 0.9 m">
+                    <name>
+                        <simpleValue>OverallWidth</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:minInclusive value="0.9" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </attribute>
+                <property datatype="IfcBoolean" minOccurs="1" instructions="Døren må være tilgjengelig for funksjonshemmede" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Pset_DoorCommon</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>HandicapAccessible</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>TRUE</simpleValue>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Fri passasje" ifcVersion="IFC4" description="Inngangsplanet for Tilgjengelig boenhet skal ha fri passasje på minimum 0.9 m" instructions="Det skal eksistere ett objekt i inngangsplanet som angir fri passasje på minimum 0.9 m" minOccurs="1" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcSpatialZone</simpleValue>
+                    </name>
+                </entity>
+                <attribute>
+                    <name>
+                        <simpleValue>LongName</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>Fri passasje</simpleValue>
+                    </value>
+                </attribute>
+            </applicability>
+            <requirements>
+                <partOf relation="IFCRELCONTAINEDINSPATIALSTRUCTURE" minOccurs="1" maxOccurs="1">
+                    <entity>
+                        <name>
+                            <simpleValue>IfcSpatialZone</simpleValue>
+                        </name>
+                        <predefinedType>
+                            <simpleValue>.USERDEFINED</simpleValue>
+                        </predefinedType>
+                    </entity>
+                </partOf>
+                <attribute instructions="Fri passasje objektet må ha en definert plassering">
+                    <name>
+                        <simpleValue>ObjectPlacement</simpleValue>
+                    </name>
+                </attribute>
+                <attribute instructions="Fri passasje objektet må ha en definert og representativ geometri">
+                    <name>
+                        <simpleValue>Representation</simpleValue>
+                    </name>
+                </attribute>
+                <attribute instructions="Fri passasje må ha definert typebetegnelse iht. TEK 17">
+                    <name>
+                        <simpleValue>PredefinedType</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>.USERDEFINED</simpleValue>
+                    </value>
+                </attribute>
+                <attribute instructions="Fri passasje må ha definert typebetegnelse iht. TEK 17">
+                    <name>
+                        <simpleValue>ObjectType</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>Fri passasje</simpleValue>
+                    </value>
+                </attribute>
+                <property datatype="IfcPositiveLengthMeasure" minOccurs="1" instructions="Fri passasje objektet må ha et en definert bredde på mer enn 0.9 m" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>NODIBK_TEK17</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>FreePassage</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:minInclusive value="0.9" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Snuareal" ifcVersion="IFC4" description="Inngangsplanet for Tilgjengelig boenhet skal ha plass til snuareal for rullestol utenfor dørens slagradius" instructions="Det skal eksistere en snusirkel eller snurektangel i inngangsplanet som har geometri som kan sjekkes at ikke går i konflikt med dørens slagradius" minOccurs="1" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcSpatialZone</simpleValue>
+                    </name>
+                </entity>
+                <attribute>
+                    <name>
+                        <simpleValue>LongName</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Snusirkel" />
+                            <xs:enumeration value="Snurektangel" />
+                        </xs:restriction>
+                    </value>
+                </attribute>
+            </applicability>
+            <requirements>
+                <partOf relation="IFCRELCONTAINEDINSPATIALSTRUCTURE" minOccurs="1" maxOccurs="1">
+                    <entity>
+                        <name>
+                            <simpleValue>IfcSpatialZone</simpleValue>
+                        </name>
+                        <predefinedType>
+                            <simpleValue>.USERDEFINED</simpleValue>
+                        </predefinedType>
+                    </entity>
+                </partOf>
+                <attribute instructions="Snuarealobjektet må ha en definert plassering">
+                    <name>
+                        <simpleValue>ObjectPlacement</simpleValue>
+                    </name>
+                </attribute>
+                <attribute instructions="Snuarealobjektet må ha en definert og representativ geometri">
+                    <name>
+                        <simpleValue>Representation</simpleValue>
+                    </name>
+                </attribute>
+                <attribute instructions="Snuareal må ha definert typebetegnelse iht. TEK 17">
+                    <name>
+                        <simpleValue>PredefinedType</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>.USERDEFINED</simpleValue>
+                    </value>
+                </attribute>
+                <attribute instructions="Snuareal må ha definert typebetegnelse iht. TEK 17">
+                    <name>
+                        <simpleValue>ObjectType</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Snusirkel" />
+                            <xs:enumeration value="Snurektangel" />
+                        </xs:restriction>
+                    </value>
+                </attribute>
+                <property datatype="IfcPositiveLengthMeasure" minOccurs="1" instructions="Snusirkel må ha et en definert diameter på mer enn 1.5 m" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>NODIBK_TEK17</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>TurnDiameter</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:minInclusive value="1.5" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+                <property datatype="IfcPositiveLengthMeasure" minOccurs="1" instructions="Snurektangel må ha et en definert bredde på mer enn 1.3 m" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>NODIBK_TEK17</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>TurnWidth</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:minInclusive value="1.3" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+                <property datatype="IfcPositiveLengthMeasure" minOccurs="1" instructions="Snurektangel må ha et en definert lengde på mer enn 1.8 m" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>NODIBK_TEK17</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>TurnLength</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:minInclusive value="1.8" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
     </specifications>
 </ids>
