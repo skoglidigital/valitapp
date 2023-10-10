@@ -108,7 +108,7 @@
                 <partOf relation="IFCRELCONTAINEDINSPATIALSTRUCTURE" minOccurs="1" maxOccurs="1">
                     <entity>
                         <name>
-                            <simpleValue>IfcDoor</simpleValue>
+                            <simpleValue>IfcSpatialZone</simpleValue>
                         </name>
                     </entity>
                 </partOf>
