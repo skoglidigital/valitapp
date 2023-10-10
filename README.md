@@ -14,3 +14,9 @@ The IDS is a demo for two specifications relevant for cleaning use case for BIM.
 And tested on a model provided by a Norwegian Property Owner. 
 
 ![](img/valitapp.png)
+
+## § 12-8. Entré og garderobe demo
+
+[![Watch the video](img/demo_cover.png)](https://youtu.be/HBzGYVJ4i8E)
+
+
