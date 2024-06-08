@@ -90,14 +90,12 @@ def main():
     --------------
     ### Developed by
 
-    #### [mok-see]
-
-    Follow us [on LinkedIn](https://www.linkedin.com/company/mok-see/)
+    #### Skogli digital
 
     #### Based on Ifcopenshell, IfcTester and Ifc101 course
     
     --------------
-    Find the code [on Github](https://github.com/mok-see)
+    Find the code [on Github](https://github.com/skoglidigital)
 
     License: [GPL-3.0 license](https://github.com/mok-see/valitapp/blob/main/LICENSE)
     
