@@ -1,7 +1,7 @@
 # Valitapp
 A streamlit app to validate IFC models against IDS. 
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://validate-ifc.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ids-checker.streamlit.app/)
 
 # Prototype to test out validation of IFC files using IDS
 
