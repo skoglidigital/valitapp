@@ -17,8 +17,8 @@ executing==2.0.0
 gitdb==4.0.10
 GitPython==3.1.37
 idna==3.4
-ifcopenshell
-ifctester
+ifcopenshell==0.7.0
+ifctester==0.0.230918
 importlib-metadata==6.8.0
 ipykernel==6.25.2
 ipython==8.16.1
@@ -63,6 +63,7 @@ shapely==2.0.6
 six==1.16.0
 smmap==5.0.1
 stack-data==0.6.3
+streamlit==1.27.2
 tenacity==8.2.3
 toml==0.10.2
 toolz==0.12.0
